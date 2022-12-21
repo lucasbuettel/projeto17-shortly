@@ -1,6 +1,6 @@
 CREATE DATABASE shortly;
 
-CREATE TABLE "users_data" (
+CREATE TABLE "users" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR(50) NOT NULL,
 	"email" TEXT NOT NULL UNIQUE,
@@ -8,15 +8,16 @@ CREATE TABLE "users_data" (
 	"confirmPassword" TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE "sign_in" (
+CREATE TABLE "session" (
 	"id" SERIAL PRIMARY KEY,
-	"email" TEXT NOT NULL UNIQUE,
-	"password" TEXT NOT NULL UNIQUE,
+	"idUser" INTEGER NOT NULL UNIQUE REFERENCES "users"("id"),
+	"token" TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE "shortLink" (
     "id" SERIAL PRIMARY KEY,
-    "userId" TEXT NOT NULL UNIQUE,
+    "userId" INTEGER NOT NULL REFERENCES "users"("id"),
+    "seesionId" INTEGER NOT NULL REFERENCES "session"("id"),
     "shortUrl" TEXT NOT NULL,
     "url" TEXT NOT NULL UNIQUE
 )
