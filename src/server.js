@@ -4,7 +4,7 @@ import cors from "cors";
 import { connection } from "./database/db.js";
 
 import userDataRouter from  "./routes/userDataRouter.js"
-import urlsShorten from "./routes/urlsShorten.js"
+import urlsShortenRouter from "./routes/urlsShortenRouter.js"
 
 
 dotenv.config();
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(userDataRouter);
-app.use(urlsShorten);
+app.use(urlsShortenRouter);
 
 const port = 4000;
 app.listen(port, () => console.log(`Server running in port: ${port}`));
