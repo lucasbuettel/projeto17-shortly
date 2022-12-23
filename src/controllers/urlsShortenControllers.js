@@ -10,7 +10,7 @@ export async function shortUrl(req, res){
 
         await connection.query(`
         INSERT INTO "shortLink" ("userId", "seesionId", "shortUrl", url)
-        VALUES ($1, $2, $3, $4) `,[verifyOnline.idUser, verifyOnline.id, shortenedLink, url])
+        VALUES ($1, $2, $3, $4) `,[verifyOnline.idUser, verifyOnline.id, shortenedLink, url]);
 
         res.send(shortenedLink);
 
